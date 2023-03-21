@@ -61,7 +61,6 @@ export class CategoriesComponent implements OnInit {
       .valueChanges.pipe(debounceTime(400))
       .subscribe((name) => {
         if (!name) return;
-        console.log(name.toLowerCase());
         this.items = this.tools.filter((elem) => {
           console.log(elem);
           return elem.tool.toLowerCase().includes(name.toLowerCase());
