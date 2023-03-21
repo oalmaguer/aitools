@@ -1,0 +1,38 @@
+<div class="container">
+  <form [formGroup]="form">
+    <label class="categories-label" for="Category"
+      ><strong>Categories</strong></label
+    >
+    <br />
+    <select
+      placeholder="Select Category"
+      formControlName="category"
+      class="dropdown"
+      aria-placeholder="category"
+      name=""
+      id=""
+    >
+      Search a category
+      <option *ngFor="let item of categories" value="{{ item }}">
+        {{ item | titlecase }}
+      </option>
+    </select>
+
+    <div class="input">
+      <input
+        type="text"
+        formControlName="searchName"
+        name="search"
+        placeholder="Search by Name"
+      />
+      <a (click)="clearSearch()">
+        <p>Clear</p>
+      </a>
+      <ul *ngIf="isSearching && this.items.length > 0">
+        <li *ngFor="let item of items">
+          {{ item.tool }}
+        </li>
+      </ul>
+    </div>
+  </form>
+</div>

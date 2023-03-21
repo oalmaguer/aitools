@@ -1,0 +1,10 @@
+<div class="list-container tilt-in-top-1">
+  <div class="card" *ngFor="let item of aitools">
+    <div class="card-content">
+      <h1>{{ item.tool }}</h1>
+      <img src="{{ item.tool_mage_url }}" />
+      <p>{{ item.tool_description }}</p>
+      <!-- <a href="{{ item.tool_mage_url }}"><p>Visit tool</p></a> -->
+    </div>
+  </div>
+</div>
