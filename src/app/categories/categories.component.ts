@@ -58,16 +58,17 @@ export class CategoriesComponent implements OnInit {
 
     this.form
       .get('searchName')
-      .valueChanges.pipe(debounceTime(400))
+      .valueChanges.pipe(debounceTime(300))
       .subscribe((name) => {
-        if (!name) return;
-        console.log(name.toLowerCase());
+        if (name == '' || !name) {
+          this.clearSearch();
+          return;
+        }
         this.items = this.tools.filter((elem) => {
-          console.log(elem);
           return elem.tool.toLowerCase().includes(name.toLowerCase());
         });
-        console.log(this.items);
         this.isSearching = true;
+        this.toolsService.setTools(this.items);
         // this.searchTools(category);
       });
   }
@@ -75,6 +76,7 @@ export class CategoriesComponent implements OnInit {
   clearSearch() {
     this.items = 0;
     this.form.get('searchName').setValue('');
+    this.toolsService.setTools(this.tools);
   }
 
   searchTools(category: string) {
@@ -82,7 +84,6 @@ export class CategoriesComponent implements OnInit {
     const filtered_tools = this.tools.filter(
       (item) => item.category == category
     );
-    console.log(category);
     if (category === 'All') {
       this.toolsService.setTools(this.tools);
       return;
